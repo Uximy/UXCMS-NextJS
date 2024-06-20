@@ -2,6 +2,7 @@
 
 #VScode
 .vscode
+/старые коды на сохранения
 
 # dependencies
 /node_modules
