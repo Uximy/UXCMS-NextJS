@@ -1,0 +1,146 @@
+.Header {
+    margin-top: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    margin-left: 7rem;
+}
+
+.nav {
+    margin: 0;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+.ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav>.ul {
+    padding: 4px 16px;
+}
+
+.li {
+    display: flex;
+    padding: 8px 12px;
+}
+
+.Link {
+    color: #067df7;
+    text-decoration: none;
+    transition: text-shadow 200ms;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.Link:hover {
+    text-shadow: 0 0 0.3rem #ffffff70;
+}
+
+
+.btnLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    transition: background 0.5s, border 0.5s;
+    padding: 10px 10px;
+    width: 15rem;
+    position: relative;
+    right: 3rem;
+}
+
+.UserBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--border-radius);
+    background: rgba(var(--card-rgb), 0);
+    border: 1px solid rgba(var(--card-border-rgb), 0);
+    transition: background 0.5s, border 0.5s;
+    padding: 10px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 15rem;
+    user-select: none;
+}
+
+.UserBlock {
+    position: relative;
+}
+
+.bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: end;
+    width: 100%;
+    right: 5px;
+    position: relative; */
+}
+
+/* Включить наведение только на устройствах без сенсорного экрана */
+/* @media (hover: hover) and (pointer: fine) {} */
+
+.UserBar:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
+
+.avatar {
+    border-radius: 20%;
+    background: rgba(var(--card-border-rgb), 0.15);
+    width: 45px;
+    height: 45px;
+}
+
+.NickName {
+    margin-right: 10px;
+    user-select: none;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 600;
+}
+
+.effect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.effect::after {
+    content: "";
+    left: 25%;
+    position: absolute;
+    filter: blur(45px);
+    transform: translateZ(0);
+}
+
+/* .effect::before {
+    background: var(--secondary-glow);
+    border-radius: 50%;
+    width: 480px;
+    height: 360px;
+    margin-left: -400px;
+} */
+
+.effect::after {
+    background: var(--primary-glow);
+    width: 240px;
+    height: 180px;
+    z-index: -1;
+}

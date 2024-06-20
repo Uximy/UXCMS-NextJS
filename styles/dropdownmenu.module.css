@@ -1,0 +1,32 @@
+.DownMenu {
+    position: absolute;
+    top: 100%;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    list-style: none;
+    padding: 10px 0;
+    width: 101.1%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Link {
+    display: block;
+    padding: 5px 0;
+    padding-left: 10px;
+    transition: background-color 0.5s;
+}
+
+.Link:hover {
+    background-color: rgba(var(--card-border-rgb), 0.15);
+}
+
+.ActiveDropDown {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    position: relative;
+}
