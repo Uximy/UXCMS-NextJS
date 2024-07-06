@@ -3,93 +3,64 @@
 import Link from 'next/link';
 import Style from '/styles/header.module.css';
 import Image from "next/image";
-import dropstyle from "/styles/dropdownmenu.module.css";
-import { useState, useEffect } from 'react'
-import { getCookie } from 'cookies-next';
-import axios from "axios";
-
-
+import UserBar from "./UserBar";
+import { useAppDispatch, useAppSelector } from '../lib/hooks';
+import { fetchPlayersOnline } from '../lib/Slices/playerSlice';
+import { useEffect } from 'react';
 
 const links = [
   { href: '/', label: 'Главная' },
-  { href: '/test', label: 'Тест страница' },
+  { href: '/shop', label: 'Магазин' },
+  { href: '/stats', label: 'Статистика' },
   { href: '/news', label: 'Новости' },
-  { href: '/rules', label: 'Правила' },
+  { href: '/rules', label: 'Правила' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
 });
 
-export default function Header() {
-
-  const [User, setUser] = useState(null);
+export default function Header(User) {
+  
+  User = User.element;
+  const dispatch = useAppDispatch();
+  const onlinePlayers = useAppSelector(state => state.players.online);
+  const status = useAppSelector(state => state.players.status);
 
   useEffect(() => {
-    async function fetchUser() {
-      try {
-        const access_token = getCookie('access_token');
-
-        if (!access_token) {
-          console.error('No access token found');
-          return;
-        }
-
-        // Запрос данных пользователя через API
-        const res = await axios.post('/api/auth/user',
-          {
-            token: access_token
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        );
-
-        setUser(res.data.steamUser);
-      } catch (error) {
-        console.error('Error fetching Steam profile:', error);
-      }
-      
+    if (status === 'idle') {
+      dispatch(fetchPlayersOnline());
     }
 
-    fetchUser();
-  }, []);
-
+    const interval = setInterval(() => {
+      console.log('обновил общий счётчик');
+      return dispatch(fetchPlayersOnline())
+    }, 600000);
+    return () => clearInterval(interval);
+  }, [status, dispatch]);
   
-  const dropDownLinks = [
-    { href: User ? User.profileURL : '', label: 'Профиль' },
-    { href: '/setting', label: 'Настройки' },
-    { href: '/exit', label: 'Выход' }
-  ].map(link => {
-    link.key = `nav-link-${link.href}-${link.label}`
-    return link
-  });
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-
-    setIsOpen(!isOpen);
-  };
-
-
+  
+  
   return (
     <div className={Style.Header}>
-      <Link href={'/'} className={Style.effect}>
-        <Image
-            className={Style.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={127}
-            height={38}
-            priority
-          />
-      </Link>
+      <div className={Style.headerInfo}>
+        <Link href={'/'} className={Style.effect}>
+          {/* <Image
+              className={Style.logo}
+              src="/next.svg"
+              alt="Next.js Logo"
+              width={127}
+              height={38}
+              priority
+            /> */}
+            <h1 className={Style.logo}>UX-CMS</h1>
+        </Link>
 
+        <div className={Style.CountOnlineServers}>
+          <p><span className={Style.pulse}></span>Всего игроков :</p>
+          <span>{onlinePlayers}</span>
+        </div>
+      </div>
+      
       <nav className={Style.nav}>
         <ul className={Style.ul}>
           {links.map(({ key, href, label }) => (
@@ -107,37 +78,14 @@ export default function Header() {
             href={'/api/auth/steam'}
             className={Style.btnLogin}
           >
-            Авторизоваться
+            <div>
+              <i className={"fa-brands fa-steam"} ></i>
+              Войти через Steam
+            </div>
           </Link>
         :
-          <div className={`${Style.UserBar} ${isOpen ? dropstyle.ActiveDropDown : ''}`} onClick={toggleDropdown}>
-            <div className={Style.bar}>
-              <span className={Style.NickName}>{User.username}</span>
-              <Image
-                className={Style.avatar}
-                src={User.avatarURL}
-                alt="User Avatar"
-                width={45}
-                height={45}
-              />
-            </div>
-
-            {isOpen && (
-              <ul className={dropstyle.DownMenu}>
-                {dropDownLinks.map(({ key, href, label, func }) => (
-                  <li key={key} className={dropstyle.li}>
-                    <Link href={href} className={dropstyle.Link}>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <UserBar element={User} />
       }
-      
-
-      
     </div>
   );
 }

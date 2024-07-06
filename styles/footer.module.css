@@ -1,0 +1,63 @@
+.logo {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 3px;
+    color: #fffffff3;
+    user-select: none;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgba(var(--card-rgb), 0.1);
+    width: 100%;
+    height: 10rem;
+    padding-top: 1.5rem;
+}
+
+.container .left {
+    margin-left: 6rem;
+    display: flex;
+    flex-direction: column;
+    color: #fffffff3;
+    gap: 10px;
+}
+
+.container .left img {
+    filter: invert(1);
+}
+
+.container .left p {
+    max-width: 249px;
+    line-height: 1.5em;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.container .right {
+    margin-right: 6rem;
+}
+
+.container .right ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .right li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.container .right li a {
+    transition: color 0.5s;
+}
+
+.container .right li a:hover {
+    color: #6080ff;
+}

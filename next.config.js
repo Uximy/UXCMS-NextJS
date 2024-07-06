@@ -8,7 +8,26 @@ const nextConfig = {
         steamApiKey: '527EE8406306B8922F49DE45C53DC3C8'
     },
     images: {
-        domains: ['avatars.steamstatic.com'],
+        remotePatterns: [
+            {
+              protocol: 'https',
+              hostname: 'avatars.steamstatic.com',
+              port: '',
+              pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.akamai.steamstatic.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                port: '',
+                pathname: '/**',
+            }
+        ],
     },
 };
 

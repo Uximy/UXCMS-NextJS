@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-.containerServers {
+.containerServersTable {
   padding-bottom: 1rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0.1);
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #067df7;
+  color: #6080ff;
 }
 
 .servers thead tr th {
@@ -48,11 +48,6 @@
   color: #fffffff3;
 }
 
-/* .servers tbody tr:nth-child(2n-1) {
-  border-top: 1px solid rgba(var(--card-border-rgb), 0.15);
-  border-bottom: 1px solid rgba(var(--card-border-rgb), 0.15);
-} */
-
 .servers tbody tr:not(:last-child) {
   border-bottom: 1px solid rgba(var(--card-border-rgb), 0.15);
 }
@@ -65,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
   margin: 10px 0;
 }
@@ -80,21 +75,96 @@
   pointer-events: none;
 }
 
-.action {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 10px;
-  font-size: 22px; 
-}
-
-.action a {
-  height: 23.49px;
-}
-
 .connect {
   transition: color 0.5s;
 }
 
 .connect:hover {
-  color: #067df7;
+  color: #6080ff;
+}
+
+
+.containerServers {
+  /* padding-bottom: 1rem; */
+  /* border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15); */
+  width: 60rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+  column-gap: 3rem;
+  row-gap: 3rem;
+}
+
+.containerServers .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240px;
+  position: relative;
+}
+
+.containerServers .card .maps {
+  border-radius: 20px 20px 0 0;
+  height: 206px;
+  width: 240px;
+  object-fit: cover;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.containerServers .card .cardDown {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0 0 20px 20px;
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  padding: 0.7rem;
+  width: 100%;
+  height: 9rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.card .lineCard {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #A7AAB5;
+  margin: 10px 0;
+  opacity: 0.6;
+}
+
+.card .cardDown .title {
+  font-size: 14px;
+}
+
+.card .cardDown div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+}
+
+.card .cardDown div i {
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+.card .cardDown div i:hover {
+  color: #6080ff;
+}
+
+.players {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.players:hover {
+  color: #6080ff;
 }

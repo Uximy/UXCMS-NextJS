@@ -7,18 +7,25 @@
 }
 
 .logo {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    position: relative; */
+    /* filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70); */
     margin-left: 7rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 3px;
+    color: #fffffff3;
+    user-select: none;
+    text-shadow: 0 0 0.3rem #ffffff70;
 }
 
 .nav {
     margin: 0;
     font-family: sans-serif;
-    width: 100%;
 }
 
 .ul {
@@ -37,7 +44,7 @@
 }
 
 .Link {
-    color: #067df7;
+    color: #6080ff;
     text-decoration: none;
     transition: text-shadow 200ms;
     font-family: 'Inter', sans-serif;
@@ -48,6 +55,65 @@
     text-shadow: 0 0 0.3rem #ffffff70;
 }
 
+.headerInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+}
+
+.CountOnlineServers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--border-radius);
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    padding: 10px 20px 10px 10px;
+    /* width: 15rem; */
+}
+
+.CountOnlineServers p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.CountOnlineServers span {
+    font-family: "GilroyLight", sans-serif;
+    font-weight: 300;
+}
+
+.CountOnlineServers p .pulse {
+    font-size: 9px;
+    background: #6080ff;
+    width: 11px;
+    height: 11px;
+    border-radius: 100%;
+    box-shadow: 0px 0px 10px 2px #6080ff ;
+    position: relative;
+}
+
+.CountOnlineServers p .pulse::after{
+    content: "";
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    background: #6080ff;
+    border-radius: 100%;
+    animation: pulse 3s ease-out infinite;
+    opacity: .5;
+}
+
+@keyframes pulse {
+    20%, 100% {
+        opacity: 0;
+        -webkit-transform: scale(5);
+        transform: scale(5);
+    }
+}
 
 .btnLogin {
     display: flex;
@@ -56,11 +122,47 @@
     border-radius: var(--border-radius);
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
-    transition: background 0.5s, border 0.5s;
-    padding: 10px 10px;
+    transition: background 0.5s, background-position 0.1s ease 0s;
+    padding: 15px 10px;
     width: 15rem;
     position: relative;
     right: 3rem;
+    overflow: hidden;
+}
+
+.btnLogin:hover {
+    background: rgba(var(--card-rgb), 25%);
+}
+
+.btnLogin::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.49) 51.11%, rgba(217, 217, 217, 0) 100%);
+    animation: 8s linear 0s infinite normal none running animationLogin;
+}
+
+.btnLogin div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.btnLogin div i {
+    font-size: 25px;
+}
+
+@keyframes animationLogin {
+    0% {
+        transform: translateX(-100%);
+    }
+    10%, 100% {
+        transform: translateX(100%);
+    }
 }
 
 .UserBar {
@@ -70,11 +172,11 @@
     border-radius: var(--border-radius);
     background: rgba(var(--card-rgb), 0);
     border: 1px solid rgba(var(--card-border-rgb), 0);
-    transition: background 0.5s, border 0.5s;
+    transition: background 0.5s, border 0.5s, box-shadow 0.5s;
     padding: 10px 10px;
     margin-right: 10px;
     cursor: pointer;
-    width: 15rem;
+    width: 12rem;
     user-select: none;
 }
 
@@ -100,9 +202,17 @@
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
 }
 
+.UserBar:hover .avatar {
+    box-shadow: 0px 0px 0px 0px transparent;
+}
+
+
+
 .avatar {
     border-radius: 20%;
     background: rgba(var(--card-border-rgb), 0.15);
+    box-shadow: 0px 0px 10px 1px #6080ff;
+    transition: box-shadow 0.5s;
     width: 45px;
     height: 45px;
 }
@@ -127,7 +237,6 @@
     left: 25%;
     position: absolute;
     filter: blur(45px);
-    transform: translateZ(0);
 }
 
 /* .effect::before {
@@ -143,4 +252,17 @@
     width: 240px;
     height: 180px;
     z-index: -1;
+    animation: testpulse 6s ease-out infinite;
+}
+
+@keyframes testpulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+       transform: scale(0.7);
+    }
+    100% {
+       transform: scale(1);
+    }
 }

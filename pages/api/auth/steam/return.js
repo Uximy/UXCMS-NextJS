@@ -1,9 +1,7 @@
 import { createRouter } from 'next-connect';
-import passport from '../../../../lib/passport';
-import session from '../../../../lib/session';
-import getConfig from 'next/config';
+import passport from '/lib/passport';
+import session from '/lib/session';
 import { setCookie } from 'cookies-next';
-const { serverRuntimeConfig } = getConfig();
 
 const router = createRouter();
 
@@ -24,14 +22,7 @@ router.get((req, res, next) => {
       res,
       maxAge: 60 * 60 * 24 * 7
     })
-
-    setCookie('steamID', user.steamid, {
-      req,
-      res,
-      maxAge: 60 * 60 * 24 * 7
-    })
     
-    console.log(user);
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
