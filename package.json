@@ -11,7 +11,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "cheerio": "^1.0.0-rc.12",
     "cookies-next": "^4.2.1",
     "express-session": "^1.18.0",
